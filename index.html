@@ -291,7 +291,7 @@
 
                     console.log(weather);
 
-                    let aqi = `http://api.waqi.info/feed/${city}/?token=187d167bd4362037b85f772a471f4da6170d9139`;
+                    let aqi = `https://api.waqi.info/feed/${city}/?token=187d167bd4362037b85f772a471f4da6170d9139`;
 
                     fetch(aqi)
                         .then(res => res.json())
@@ -328,5 +328,6 @@
         })
     </script>
 </body>
+
 
 </html>
