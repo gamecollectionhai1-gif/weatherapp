@@ -274,75 +274,101 @@
         let cardcont = document.querySelector(".cardcont");
 
         input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") btn.click();
+            if (e.key == "Enter") {
+                btn.click();
+            }
+            console.log(e)
         });
 
         btn.addEventListener("click", () => {
 
-            if (input.value.trim() === "") {
+            if (input.value.trim() == "") {
                 alert("Please enter a city name!");
                 return;
             }
 
             let city = input.value;
-            let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=03dee10715b77bc5a1dd579f361bb7cb&units=metric`;
+            let weather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=03dee10715b77bc5a1dd579f361bb7cb&units=metric`;
 
-            fetch(weatherURL)
+            fetch(weather)
                 .then(res => res.json())
                 .then(weather => {
+                    console.log(weather)
 
-                    let aqiURL = `https://api.waqi.info/feed/${city}/?token=187d167bd4362037b85f772a471f4da6170d9139`;
+                    let aqi = `https://api.waqi.info/feed/${city}/?token=187d167bd4362037b85f772a471f4da6170d9139`;
 
-                    fetch(aqiURL)
+                    fetch(aqi)
                         .then(res => res.json())
                         .then(aqi => {
+                            console.log(aqi)
 
-                            /* CARD */
-                            let card = document.createElement("div");
-                            card.setAttribute("class", "card");
+                            let address = `https://nominatim.openstreetmap.org/search?q=${city}&format=json&addressdetails`;
 
-                            /* TITLE */
-                            let h2 = document.createElement("h2");
-                            h2.innerHTML = city;
-                            Object.assign(h2.style, {
-                                color: "white",
-                                fontFamily: "bungee, sans-serif",
-                                fontWeight: "lighter",
-                                position: "relative"
-                            })
+                            fetch(address)
+                                .then(res => res.json())
+                                .then(address => {
+                                    console.log(address);
 
-                            /* CROSS */
-                            let cross = document.createElement("span");
-                            cross.setAttribute("class", "cross");
-                            cross.innerHTML = "X";
-                            Object.assign(cross.style, {
-                                color: "red",
-                                cursor: "pointer",
-                                position: "absolute",
-                                right: "5px",
-                            })
+                                    /* CARD */
+                                    let card = document.createElement("div");
+                                    card.setAttribute("class", "card");
 
-                            cross.addEventListener("click", () => {
-                                card.remove();
-                            });
+                                    /* TITLE */
+                                    let h2 = document.createElement("h2");
+                                    h2.innerHTML = city;
+                                    Object.assign(h2.style, {
+                                        color: "white",
+                                        fontFamily: "bungee, sans-serif",
+                                        fontWeight: "lighter",
+                                        position: "relative"
+                                    })
 
-                            h2.appendChild(cross);
-                            card.appendChild(h2);
+                                    /* CROSS */
+                                    let cross = document.createElement("span");
+                                    cross.setAttribute("class", "cross");
+                                    cross.innerHTML = "X";
+                                    Object.assign(cross.style, {
+                                        color: "red",
+                                        cursor: "pointer",
+                                        position: "absolute",
+                                        right: "5px",
+                                    })
 
-                            /* LINE */
-                            let hr = document.createElement("hr");
-                            hr.style.marginBottom = "10px";
-                            card.appendChild(hr);
+                                    cross.addEventListener("click", () => {
+                                        card.remove();
+                                    });
 
-                            /* INFO */
-                            let info = document.createElement("div");
-                            info.innerHTML = `
-                            🌡️ <span>Temperature: ${Math.round(weather.main.temp)}° C</span><br>
-                            💧 <span>Humidity: ${weather.main.humidity} %</span><br>
-                            ☁️ <span>AQI: ${aqi.data.aqi}</span>
-                        `;
-                            card.appendChild(info);
-                            cardcont.appendChild(card);
+                                    h2.appendChild(cross);
+                                    card.appendChild(h2);
+
+                                    /* LINE */
+                                    let hr = document.createElement("hr");
+                                    card.appendChild(hr);
+                                    
+                                    let para = document.createElement("p")
+                                    para.innerHTML = `${address[0].address.country}`
+                                    Object.assign(para.style,{
+                                        color:"#39ff14",
+                                        margin:"2px 0px 5px 0px",
+                                        fontFamily:"",
+                                        fontSize:"0.85rem",
+                                    })
+                                    card.appendChild(para)
+
+                                    /* INFO */
+                                    let info = document.createElement("div");
+                                    info.innerHTML = `
+                                                    🌡️ <span> Temperature: ${Math.round(weather.main.temp)}° C </span>
+                                                    <br>
+                                                    💧 <span> Humidity: ${weather.main.humidity} % </span>
+                                                    <br>
+                                                    ☁️ <span> AQI: ${aqi.data.aqi} </span>
+                                                    <br>
+                                                `;
+                                    card.appendChild(info);
+                                    cardcont.appendChild(card);
+
+                                })
                         });
                 });
 
@@ -353,4 +379,3 @@
 </body>
 
 </html>
-
