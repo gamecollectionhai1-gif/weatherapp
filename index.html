@@ -1,1 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            padding-bottom: 40px;
+        }
+
+        h1 {
+            color: #39ff14;
+            text-align: center;
+            font-family: "zen dots", sans-serif;
+            font-weight: lighter;
+            margin: 50px 0px 20px 0px;
+            /* animation: x 2s infinite; */
+        }
+
+        @keyframes x {
+            0% {
+                color: #39ff14;
+            }
+
+            10% {
+                color: yellowgreen;
+            }
+
+            20% {
+                color: yellow;
+            }
+
+            30% {
+                color: orange;
+            }
+
+            40% {
+                color: red;
+            }
+
+            50% {
+                color: brown;
+            }
+
+            60% {
+                color: red;
+            }
+
+            70% {
+                color: orange;
+            }
+
+            80% {
+                color: yellow;
+            }
+
+            90% {
+                color: yellowgreen;
+            }
+
+            100% {
+                color: #39ff14;
+            }
+        }
+
+        .container {
+            height: fit-content;
+            width: 51%;
+            background-color: black;
+            margin: 10px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: solid 2px #39ff14;
+        }
+
+        .container>input {
+            width: 85%;
+            height: 40px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border: solid 2px #39ff14;
+            padding: 0px 10px 0px 10px;
+            font-size: 1rem;
+            color: white;
+            font-family: "Mulish", sans-serif;
+            position: relative;
+        }
+
+        .container>input::placeholder {
+            color: #39ff14;
+            opacity: 0.5;
+        }
+
+        .container>button {
+            width: 15%;
+            border: none;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: "bungee", sans-serif;
+            background-color: black;
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            transition: 0.3s;
+        }
+
+        .container>button:hover {
+            background-color: #39ff14;
+            color: black;
+        }
+
+        .container>.cardcont {
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px 5px;
+        }
+
+        .container>.cardcont>.card {
+            height: 200px;
+            width: 42%;
+            box-shadow: 0px 0px 20px #39ff14;
+            padding: 10px;
+            font-family: "Mulish", sans-serif;
+            margin: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .container>.cardcont>.card:hover {
+            transform: scale(1.02);
+        }
+
+        span {
+            color: white;
+        }
+
+        footer {
+            height: fit-content;
+            width: 100%;
+            padding: 5px 0px;
+            box-shadow: 0px 0px 30px #39ff14;
+            background-color: #39ff14;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-family: "zen dots", sans-serif;
+            text-align: center;
+            align-content: center;
+            font-size: 1.1rem;
+        }
+
+        footer>#copywrite {
+            font-size: 1.5rem;
+            color: black;
+            font-family: 'bungee', sans-serif;
+            font-weight: lighter;
+        }
+
+        /* RESPOSNIVE DESIGN */
+
+        /* Tablets */
+        @media (max-width: 1024px) {
+
+            h1 {
+                margin: 50px 0px 20px 0px;
+            }
+
+            .container {
+                width: 70%;
+            }
+
+            .container>input {
+                width: 75%;
+                font-size: 0.95rem;
+            }
+
+            .container>button {
+                width: 25%;
+                font-size: 0.9rem;
+            }
+
+            .container>.cardcont>.card {
+                width: 80%;
+            }
+        }
+
+        /* Mobiles */
+        @media (max-width: 600px) {
+
+            h1 {
+                margin: 30px 0px 20px 0px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .container>input {
+                width: 100%;
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+
+            .container>button {
+                width: 100%;
+                font-size: 0.9rem;
+                background-color: #39ff14;
+                color: black;
+            }
+
+            .container>.cardcont>.card {
+                width: 100%;
+                margin: 15px 0;
+                height: auto;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            span {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                font-size: 0.7rem;
+            }
+
+            footer>#copywrite {
+                font-size: 1rem;
+            }
+
+            .cross {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Weather Report</h1>
+    <div class="container">
+        <input type="text" placeholder="Enter Any City Name......">
+        <button>Enter</button>
+        <div class="cardcont">
+
+        </div>
+    </div>
+    <footer>&copy; All Rights Reserved by
+        <span id="copywrite"> Shivam Singh </span>
+    </footer>
+    <script>
+        let input = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let cardcont = document.querySelector(".cardcont");
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") btn.click();
+        });
+
+        btn.addEventListener("click", () => {
+
+            if (input.value.trim() === "") {
+                alert("Please enter a city name!");
+                return;
+            }
+
+            let city = input.value;
+            let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=03dee10715b77bc5a1dd579f361bb7cb&units=metric`;
+
+            fetch(weatherURL)
+                .then(res => res.json())
+                .then(weather => {
+
+                    let aqiURL = `https://api.waqi.info/feed/${city}/?token=187d167bd4362037b85f772a471f4da6170d9139`;
+
+                    fetch(aqiURL)
+                        .then(res => res.json())
+                        .then(aqi => {
+
+                            /* CARD */
+                            let card = document.createElement("div");
+                            card.setAttribute("class", "card");
+
+                            /* TITLE */
+                            let h2 = document.createElement("h2");
+                            h2.innerHTML = city;
+                            Object.assign(h2.style, {
+                                color: "white",
+                                fontFamily: "bungee, sans-serif",
+                                fontWeight: "lighter",
+                                position: "relative"
+                            })
+
+                            /* CROSS */
+                            let cross = document.createElement("span");
+                            cross.setAttribute("class", "cross");
+                            cross.innerHTML = "X";
+                            Object.assign(cross.style, {
+                                color: "red",
+                                cursor: "pointer",
+                                position: "absolute",
+                                right: "5px",
+                            })
+
+                            cross.addEventListener("click", () => {
+                                card.remove();
+                            });
+
+                            h2.appendChild(cross);
+                            card.appendChild(h2);
+
+                            /* LINE */
+                            let hr = document.createElement("hr");
+                            hr.style.marginBottom = "10px";
+                            card.appendChild(hr);
+
+                            /* INFO */
+                            let info = document.createElement("div");
+                            info.innerHTML = `
+                            🌡️ <span>Temperature: ${Math.round(weather.main.temp)}° C</span><br>
+                            💧 <span>Humidity: ${weather.main.humidity} %</span><br>
+                            ☁️ <span>AQI: ${aqi.data.aqi}</span>
+                        `;
+                            card.appendChild(info);
+                            cardcont.appendChild(card);
+                        });
+                });
+
+            input.value = "";
+        });
+    </script>
+
+</body>
+
+</html>
 
